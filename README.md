@@ -5,4 +5,6 @@ A plugin for [Sentry](https://www.getsentry.com/) that logs errors to [irccat](h
 
 ## Installation
 
-Simply install the python package, it'll automatically register with Sentry.
+Simply install the python package, it'll automatically register with Sentry:
+
+`$ pip install sentry_irccat`
