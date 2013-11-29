@@ -1,7 +1,7 @@
 import socket
 
 from django import forms
-from sentry.conf import settings
+from sentry.conf.server import SENTRY_URL_PREFIX
 from sentry.plugins import Plugin
 from sentry.plugins.bases.notify import NotificationPlugin, NotificationConfigurationForm
 import sentry_irccat
@@ -28,7 +28,7 @@ class IRCCatMessage(Plugin):
     def post_process(self, group, event, is_new, is_sample, **kwargs):
         if not is_new or not self.is_configured(event.project):
             return
-        link = '%s/%s/group/%d/' % (settings.URL_PREFIX, group.project.slug,
+        link = '%s/%s/group/%d/' % (SENTRY_URL_PREFIX, group.project.slug,
                                     group.id)
         message = '[sentry %s] %s (%s)' % (event.server_name, event.message, link)
         self.send_payload(event.project, message)
